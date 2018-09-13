@@ -1,0 +1,4 @@
+docopt>=0.6.2
+requests>=2.19.1
+bs4>=0.0.1
+cssutils>=1.0.2
