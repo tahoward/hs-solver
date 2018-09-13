@@ -8,14 +8,23 @@ HREF_PATTERN = re.compile(r"^/(?!/)")
 
 
 def get_start_link(document=None):
-    soup = BeautifulSoup(document, features="html.parser")
+    soup = BeautifulSoup(
+        document,
+        features="html.parser",
+        from_encoding="utf-8"
+    )
+
     link = soup.body.find("a", attrs={"class": "btn"}).get("href")
 
     return link
 
 
 def get_message(document=None):
-    soup = BeautifulSoup(document, features="html.parser")
+    soup = BeautifulSoup(
+        document,
+        features="html.parser",
+        from_encoding="utf-8"
+    )
 
     try:
         elements = soup.body.findAll(text=True)
@@ -25,7 +34,7 @@ def get_message(document=None):
     except AttributeError:
         message = soup.string
 
-    return "Message: {}".format(message)
+    return u"Message: {}".format(message)
 
 
 def visible(element=None):
@@ -41,7 +50,12 @@ def visible(element=None):
 
 
 def get_comments(document=None):
-    soup = BeautifulSoup(document, features="html.parser")
+    soup = BeautifulSoup(
+        document,
+        features="html.parser",
+        from_encoding="utf-8"
+    )
+
     elements = soup.body.findAll(text=True)
     comment_elements = filter(comment, elements)
 
@@ -66,7 +80,12 @@ def get_string(elements=None):
 
 
 def get_css_link(document=None):
-    soup = BeautifulSoup(document, features="html.parser")
+    soup = BeautifulSoup(
+        document,
+        features="html.parser",
+        from_encoding="utf-8"
+    )
+
     style_sheets = soup.head.findAll("link", attrs={"rel": "stylesheet"})
 
     for style_sheet in style_sheets:
